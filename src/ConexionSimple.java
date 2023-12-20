@@ -66,7 +66,7 @@ public class ConexionSimple {
 
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(sql);
-            System.out.println("Pizza añadida con éxito");
+            System.out.println("Modelo.Pizza añadida con éxito");
 
         } catch (SQLException e){
             System.out.println("Error al registrar la pizza");

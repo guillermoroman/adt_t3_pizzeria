@@ -1,0 +1,10 @@
+Datos tabla usuarios
+
+INSERT INTO usuarios (nombre, direccion, telefono, email, contraseña) VALUES
+('Mario', 'Reino Champiñón', '123-456-7890', 'mario@mushroomkingdom.com', '1234'),
+('Luigi', 'Reino Champiñón', '123-456-7891', 'luigi@mushroomkingdom.com', '1234'),
+('Peach', 'Castillo de Peach', '123-456-7892', 'peach@mushroomkingdom.com', '1234'),
+('Bowser', 'Castillo de Bowser', '123-456-7893', 'bowser@koopakingdom.com', '1234'),
+('Yoshi', 'Isla Yoshi', '123-456-7894', 'yoshi@yoshiisland.com', '1234');
+
+
