@@ -29,7 +29,25 @@ public class PizzaDaoImpl implements PizzaDao{
 
     @Override
     public Pizza getById(int id) throws SQLException {
-        return null;
+        String sql = " SELECT * FROM pizzas WHERE id = ?";
+        Pizza p = null;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql)){
+
+            pstm.setInt(1, id); // Establecer el valor del id en la consulta
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    p = new Pizza();
+                    p.setId(rs.getInt("id"));
+                    p.setNombre(rs.getString("nombre"));
+                    p.setCoste(rs.getDouble("coste"));
+                    p.setPrecio(rs.getDouble("precio"));
+                    p.setIngredientes(rs.getString("ingredientes"));
+                }
+            }
+        }
+        return p;
     }
 
     @Override
@@ -63,6 +81,17 @@ public class PizzaDaoImpl implements PizzaDao{
 
     @Override
     public void delete(int id) throws SQLException {
+        String sql = "DELETE FROM pizzas WHERE id = ?";
 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+            pstm.setInt(1, id); // Establecer el valor del id en la consulta
+
+            int affectedRows = pstm.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Fallo al borrar pizza; no hay filas afectadas.");
+            }
+        }
     }
 }
